@@ -8,20 +8,23 @@
     content="Vision-Language Models Provide Promptable Representations for Reinforcement Learning">
   <meta name="keywords" content="PR2L">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta property="og:title"
-    content="Vision-Language Models Provide Promptable Representations for Reinforcement Learning">
+  <meta property="og:title" content="V">
   <meta property="og:type" content="website">
   <meta property="og:site_name"
     content="Vision-Language Models Provide Promptable Representations for Reinforcement Learning">
-  <meta property="og:image" content="https://vlmaps.github.io/static/images/cover_lady.png" /> <!-- todo -->
+  <meta property="og:image"
+    content="https://pr2l.github.io/static/converted_imgs/PromptableEmbedsExample/PromptableEmbedsExample-1.png" />
+  <!-- todo -->
   <meta property="og:image:type" content="image/png" />
   <meta property="og:image:width" content="1082" />
   <meta property="og:image:height" content="639" />
-  <meta property="og:url" content="https://vlmaps.github.io" />
-  <meta property="og:description" content="Project page for Visual Language Maps for Robot Navigation" />
-  <meta name="twitter:title" content="Visual Language Maps for Robot Navigation" />
-  <meta name="twitter:description" content="Project page for Visual Language Maps for Robot Navigation" />
-  <meta name="twitter:image" content="https://vlmaps.github.io/static/images/cover_lady.png" />
+  <meta property="og:url" content="https://pr2l.github.io" />
+  <meta property="og:description" content="Project page for Promptable Representations for Reinforcement Learning" />
+  <meta name="twitter:title"
+    content="Vision-Language Models Provide Promptable Representations for Reinforcement Learning" />
+  <meta name="twitter:description" content="Project page for Promptable Representations for Reinforcement Learning" />
+  <meta name="twitter:image"
+    content="https://pr2l.github.io/static/converted_imgs/PromptableEmbedsExample/PromptableEmbedsExample-1.png" />
 
   <!-- Google Tag Manager -->
   <script>(function (w, d, s, l, i) {
@@ -298,7 +301,7 @@
                     in more performant policies than (i) if generic, non-promptable representations are used and (ii) if
                     <a href="https://arxiv.org/abs/2307.15818">RT-2</a>-style instruction-following approaches are used.
                   </p>
-                  <img src="static/converted_imgs/PR2LMinecraftResults/PR2LMinecraftResults-1.png" />
+                  <img src="static/images/PR2LMinecraftResults.png" />
                 </div>
 
 
@@ -334,7 +337,7 @@
                     for finding common household objects. We find that PR2L significantly outperforms the non-promptable
                     baseline.
                   </p>
-                  <img src="static/converted_imgs/HabitatResults/HabitatResults-1.png" />
+                  <img src="static/images/HabitatResults.png" />
                 </div>
 
                 <h3 class="title is-4">Analysis of PR2L</h3>
@@ -345,7 +348,7 @@
                     Minecraft tasks, we compare PR2L's
                     representations and those yielded by the instruction-following baseline.
                   </p>
-                  <img src="static/converted_imgs/PCAComparison/PCAComparison-1.png" />
+                  <img src="static/images/PCAComparison.png" />
                   <p>
                     We observe the former
                     yields a distinct bi-modal structure, wherein high-value functional actions (attacking or using
@@ -358,8 +361,8 @@
                     interpretable, as each cluster corresponds to a different room classification yielded by the VLM.
                     The state's color corresponds to its value under an expert policy (more yellow is higher value).
                   </p>
-                  <img src="static/converted_imgs/HabitatPCAAnalysis/HabitatPCAAnalysis-1.png" />
-                  <img src="static/converted_imgs/HabitatImgEncPCAAnalysis/HabitatImgEncPCAAnalysis-1.png" />
+                  <img src="static/images/HabitatPCAAnalysis.png" />
+                  <img src="static/images/HabitatImgEncPCAAnalysis.png" />
                   <p>
                     As expected, high value states occur when the VLM's representation captures the room that a target
                     object is expected to be found: toilets in bathrooms, beds in bedrooms, and sofas in living rooms.
@@ -409,10 +412,11 @@
       <section class="section" id="BibTeX">
         <div class="container is-max-desktop content">
           <h2 class="title">BibTeX</h2>
-          <pre><code> @inproceedings{Chen24-pr2l,
-          title={Vision-Language Models Provide Promptable Representations for Reinforcement Learning},
-          author={William Chen and Oier Mees and Aviral Kumar and Sergey Levine},
-          year={2024}
+          <pre><code> @article{chen2024vision,
+            title={Vision-Language Models Provide Promptable Representations for Reinforcement Learning},
+            author={Chen, William and Mees, Oier and Kumar, Aviral and Levine, Sergey},
+            journal={arXiv preprint arXiv:2402.02651},
+            year={2024}
           } </code></pre>
         </div>
       </section>
