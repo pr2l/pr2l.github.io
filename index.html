@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Vision-Language Models Provide Promptable Representations for Reinforcement Learning</title>
+  <meta name="description"
+    content="Vision-Language Models Provide Promptable Representations for Reinforcement Learning">
+  <meta name="keywords" content="PR2L">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="og:title"
+    content="Vision-Language Models Provide Promptable Representations for Reinforcement Learning">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name"
+    content="Vision-Language Models Provide Promptable Representations for Reinforcement Learning">
+  <meta property="og:image" content="https://vlmaps.github.io/static/images/cover_lady.png" /> <!-- todo -->
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="1082" />
+  <meta property="og:image:height" content="639" />
+  <meta property="og:url" content="https://vlmaps.github.io" />
+  <meta property="og:description" content="Project page for Visual Language Maps for Robot Navigation" />
+  <meta name="twitter:title" content="Visual Language Maps for Robot Navigation" />
+  <meta name="twitter:description" content="Project page for Visual Language Maps for Robot Navigation" />
+  <meta name="twitter:image" content="https://vlmaps.github.io/static/images/cover_lady.png" />
+
+  <!-- Google Tag Manager -->
+  <script>(function (w, d, s, l, i) {
+      w[l] = w[l] || []; w[l].push({
+        'gtm.start':
+          new Date().getTime(), event: 'gtm.js'
+      }); var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+          'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-PFJ2DFW');</script>
+  <!-- End Google Tag Manager -->
+  <!-- <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script> -->
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/vlmaps_icon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PFJ2DFW" height="0" width="0"
+      style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">Vision-Language Models Provide Promptable Representations for
+              Reinforcement Learning</h1>
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">
+                <a href="">William Chen</a><sup>1</sup>,</span>
+              <span class="author-block">
+                <a href="https://www.oiermees.com/">Oier Mees</a><sup>1</sup>,</span>
+              <span class="author-block">
+                <a href="">Aviral Kumar</a><sup>2</sup>,
+              </span>
+              <span class="author-block">
+                <a href="">Sergey Levine</a><sup>1</sup>,
+              </span>
+            </div>
+
+            <div class="is-size-5 publication-authors">
+              <span class="author-block"><sup>1</sup>UC Berkeley,</span>
+              <span class="author-block"><sup>2</sup>Google DeepMind</span>
+            </div>
+
+            <div class="column has-text-centered">
+              <div class="publication-links">
+                <!-- PDF Link. -->
+                <span class="link-block"> <!-- todo -->
+                  <a href="https://arxiv.org/abs/2402.02651" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                    </span>
+                    <span>Paper</span>
+                  </a>
+                </span>
+                <!-- Video Link. 
+                <span class="link-block">
+                  <a href="" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                    </span>
+                    <span>Video</span>
+                  </a>
+                </span> -->
+                <!-- Code Link. -->
+                <span class="link-block">
+                  <a href="" class="external-link button is-normal is-rounded is-dark"> <!-- TODO -->
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code (Coming soon!)</span>
+                  </a>
+                </span>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="hero teaser">
+    <div class="container is-max-desktop">
+      <div class="hero-body">
+        <video id="teaser" autoplay muted loop playsinline height="100%">
+          <source src="static/videos/PR2LAnimation.mp4" type="video/mp4">
+        </video>
+        <h2 class="subtitle has-text-centered">
+          PR2L provides a flexible way for shaping representations for reinforcement learning with VLMs.
+        </h2>
+      </div>
+    </div>
+  </section>
+
+  <!--
+  <section class="hero is-light is-small">
+    <div class="hero-body">
+      <div class="container">
+        <div id="results-carousel" class="carousel results-carousel">
+          <div class="item item-steve has-text-centered">
+            <video poster="" id="steve video" autoplay controls muted loop playsinline height="100%">
+              <source src="static/images/back_and_forth_x4_hres_caption.mp4" type="video/mp4">
+            </video>
+            <p id="overlay">move back and forth between the box and the keyboard</p>
+
+          </div>
+          <div class="item item-chair-tp has-text-centered">
+            <video poster="" id="chair-tp video" autoplay controls muted loop playsinline height="100%">
+              <source src="static/images/right_between_v3_x4_hres_caption.mp4" type="video/mp4">
+            </video>
+            <p id="overlay">move right 1.5 meters, then move left 3 meters, then move left 1.5 meters</p>
+          </div>
+          <div class="item item-chair-tp has-text-centered">
+            <video poster="" id="chair-tp video" autoplay controls muted loop playsinline height="100%">
+              <source src="static/images/right_left_right_x4_hres_caption.mp4" type="video/mp4">
+            </video>
+            <p id="overlay">move right 1.5 meters, then move left 3 meters, then move left 1.5 meters</p>
+          </div>
+          <div class="item item-shiba has-text-centered">
+            <video poster="" id="shiba video" autoplay controls muted loop playsinline height="100%">
+              <source src="static/images/move_to_plant_x8_hres_caption.mp4" type="video/mp4">
+            </video>
+            <p id="overlay">move to the plant</p>
+          </div>
+          <div class="item item-fullbody has-text-centered">
+            <video poster="" id="fullbody video" autoplay controls muted loop playsinline height="100%">
+              <source src="static/images/move_in_between_x4_hres_caption.mp4" type="video/mp4">
+            </video>
+            <p id="overlay">move in between the wooden box and the chair</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  -->
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <!-- Abstract. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Abstract</h2>
+          <div class="content has-text-justified">
+            <p>
+              Humans can quickly learn new behaviors by leveraging background world knowledge. In contrast, agents
+              trained with reinforcement learning (RL) typically learn behaviors from scratch. We thus propose a novel
+              approach that uses the vast amounts of general and indexable world knowledge encoded in vision-language
+              models (VLMs) pre-trained on Internet-scale data for embodied RL. We initialize policies with VLMs by
+              using them as promptable representations: embeddings that are grounded in visual observations and encode
+              semantic features based on the VLM's internal knowledge, as elicited through prompts that provide task
+              context and auxiliary information. We evaluate our approach on visually-complex, long horizon RL tasks in
+              Minecraft and robot navigation in Habitat. We find that our policies trained on embeddings extracted from
+              general-purpose VLMs outperform equivalent policies trained on generic, non-promptable image embeddings.
+              We also find our approach outperforms instruction-following methods and performs comparably to
+              domain-specific embeddings.
+            </p>
+          </div>
+        </div>
+      </div>
+      <!--/ Abstract. -->
+
+      <!-- Paper video.
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Video</h2>
+          <div class="publication-video">
+            <video autoplay controls muted loop playsinline width="100%">
+              <source src="static/images/VLMaps_v24_lt.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </div>
+    </div>  -->
+  </section>
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column is-full-width">
+          <h2 class="title is-3">Approach</h2>
+          <div class="content has-text-justified has-text-centered">
+            <img src="static/converted_imgs/Architecture/Architecture-1.png" />
+
+            <h3 class="title is-4">Promptable Representations for Reinforcement Learning (PR2L)</h3>
+            <p>
+              We initialize policies for embodied control and decision-making tasks with a generative vision-language
+              model (VLM) like <a href="https://arxiv.org/abs/2305.06500">InstructBLIP</a>. For each visual observation
+              from the
+              considered task, we pass it into the VLM along with a <i>task-relevant prompt</i>, which encourages the
+              VLM to attend to useful visual features in the image and produce representations that are conducive to
+              learning to execute the task. After the VLM generates text to answer that prompt, the associated
+              <i>promptable representations</i> are given to the policy, which is trained via standard RL algorithms.
+            </p>
+            <h3 class="title is-4">Task-Relevant Prompt</h3>
+            <p>
+              Modern VLMs are generally trained to answer questions about images, but often do not know to to produce
+              actions, especially the low-level control signals common to many embodied tasks. It is thus more
+              appropriate to give them questions about the visual contents or semantics of observed images, rather than
+              asking about what actions to take. Doing so produces representations that are grounded in the image, while
+              also allowing for the user to specify specific useful features based on the VLM's semantic knowledge via
+              prompting.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <section class="section">
+        <div class="container is-max-desktop">
+
+          <div class="columns is-centered">
+
+
+            <!-- Animation. -->
+            <div class="columns is-centered">
+              <div class="column is-full-width">
+                <h2 class="title is-3">Experiments</h2>
+
+                <!-- Interpolating. -->
+                <h3 class="title is-4">Online Reinforcement Learning in Minecraft</h3>
+                <div class="content has-text-justified">
+                  <p>
+                    We first demonstrate PR2L in online RL experiments in <a href="https://minedojo.org/">Minecraft</a>.
+                    In all cases, the task-relevant
+                    prompt asks the VLM to look for and attend to the presence of the task's target entity.
+                  </p>
+                  <div class="columns is-vcentered interpolation-panel">
+                    <div class="column  has-text-centered">
+                      <video autoplay controls muted loop playsinline height="100%">
+                        <source src="static/videos/combat_spider.mp4" type="video/mp4">
+                      </video>
+                    </div>
+                    <div class="column  has-text-centered">
+                      <video autoplay controls muted loop playsinline height="100%">
+                        <source src="static/videos/milk_cow.mp4" type="video/mp4">
+                      </video>
+                    </div>
+                    <div class="column  has-text-centered">
+                      <video autoplay controls muted loop playsinline height="100%">
+                        <source src="static/videos/shear_sheep.mp4" type="video/mp4">
+                      </video>
+                    </div>
+                  </div>
+                  <p>
+                    This results
+                    in more performant policies than (i) if generic, non-promptable representations are used and (ii) if
+                    <a href="https://arxiv.org/abs/2307.15818">RT-2</a>-style instruction-following approaches are used.
+                  </p>
+                  <img src="static/converted_imgs/PR2LMinecraftResults/PR2LMinecraftResults-1.png" />
+                </div>
+
+
+
+                <h3 class="title is-4">Offline Reinforcement Learning in Habitat ObjectNav</h3>
+                <div class="content has-text-justified">
+                  <p>
+                    PR2L does not inherently improve exploration, instead producing state representations that are
+                    semantically meaningful and task-relevant. We thus expect it to shine in offline learning settings,
+                    wherein exploration is not a problem. We thus explore its usage in offline RL experiments for
+                    semantic object navigation tasks in the <a
+                      href="https://github.com/facebookresearch/habitat-sim">Habitat</a> simulator.
+                  </p>
+                  <div class="columns is-vcentered interpolation-panel">
+                    <div class="column  has-text-centered">
+                      <video autoplay controls muted loop playsinline height="100%">
+                        <source src="static/videos/toilet.mp4" type="video/mp4">
+                      </video>
+                    </div>
+                    <div class="column  has-text-centered">
+                      <video autoplay controls muted loop playsinline height="100%">
+                        <source src="static/videos/bed.mp4" type="video/mp4">
+                      </video>
+                    </div>
+                    <div class="column  has-text-centered">
+                      <video autoplay controls muted loop playsinline height="100%">
+                        <source src="static/videos/sofa.mp4" type="video/mp4">
+                      </video>
+                    </div>
+                  </div>
+                  <p>
+                    The prompt shapes the state representation to include the observed room's type, a useful abstraction
+                    for finding common household objects. We find that PR2L significantly outperforms the non-promptable
+                    baseline.
+                  </p>
+                  <img src="static/converted_imgs/HabitatResults/HabitatResults-1.png" />
+                </div>
+
+                <h3 class="title is-4">Analysis of PR2L</h3>
+                <div class="content has-text-justified">
+                  <p>
+                    To get a sense of why PR2L works, we perform principal component analysis (PCA) of the
+                    promptable representations yielded by our VLM and plot each state's first two components. For the
+                    Minecraft tasks, we compare PR2L's
+                    representations and those yielded by the instruction-following baseline.
+                  </p>
+                  <img src="static/converted_imgs/PCAComparison/PCAComparison-1.png" />
+                  <p>
+                    We observe the former
+                    yields a distinct bi-modal structure, wherein high-value functional actions (attacking or using
+                    items, large orange dots below) are clustered together in one mode (corresponding to the VLM saying
+                    that the target entity was detected).
+                  </p>
+
+                  <p>
+                    We repeat this analysis for the offline Habitat experiments. This visualization is very
+                    interpretable, as each cluster corresponds to a different room classification yielded by the VLM.
+                    The state's color corresponds to its value under an expert policy (more yellow is higher value).
+                  </p>
+                  <img src="static/converted_imgs/HabitatPCAAnalysis/HabitatPCAAnalysis-1.png" />
+                  <img src="static/converted_imgs/HabitatImgEncPCAAnalysis/HabitatImgEncPCAAnalysis-1.png" />
+                  <p>
+                    As expected, high value states occur when the VLM's representation captures the room that a target
+                    object is expected to be found: toilets in bathrooms, beds in bedrooms, and sofas in living rooms.
+                    This structure is absent in the non-promptable image encoder's representations.
+                  </p>
+                </div>
+
+
+
+
+              </div>
+            </div>
+            <!--/ Animation. -->
+
+
+            <!-- Concurrent Work. -->
+            <!-- <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Related Links</h2>
+
+        <div class="content has-text-justified">
+          <p>
+            There's a lot of excellent work that was introduced around the same time as ours.
+          </p>
+          <p>
+            <a href="https://arxiv.org/abs/2104.09125">Progressive Encoding for Neural Optimization</a> introduces an idea similar to our windowed position encoding for coarse-to-fine optimization.
+          </p>
+          <p>
+            <a href="https://www.albertpumarola.com/research/D-NeRF/index.html">D-NeRF</a> and <a href="https://gvv.mpi-inf.mpg.de/projects/nonrigid_nerf/">NR-NeRF</a>
+            both use deformation fields to model non-rigid scenes.
+          </p>
+          <p>
+            Some works model videos with a NeRF by directly modulating the density, such as <a href="https://video-nerf.github.io/">Video-NeRF</a>, <a href="https://www.cs.cornell.edu/~zl548/NSFF/">NSFF</a>, and <a href="https://neural-3d-video.github.io/">DyNeRF</a>
+          </p>
+          <p>
+            There are probably many more by the time you are reading this. Check out <a href="https://dellaert.github.io/NeRF/">Frank Dellart's survey on recent NeRF papers</a>, and <a href="https://github.com/yenchenlin/awesome-NeRF">Yen-Chen Lin's curated list of NeRF papers</a>.
+          </p>
+        </div>
+      </div>
+    </div> -->
+            <!--/ Concurrent Work. -->
+
+          </div>
+      </section>
+
+
+      <section class="section" id="BibTeX">
+        <div class="container is-max-desktop content">
+          <h2 class="title">BibTeX</h2>
+          <pre><code> @inproceedings{Chen24-pr2l,
+          title={Vision-Language Models Provide Promptable Representations for Reinforcement Learning},
+          author={William Chen and Oier Mees and Aviral Kumar and Sergey Levine},
+          year={2024}
+          } </code></pre>
+        </div>
+      </section>
+
+
+
+
+
+      <footer class="footer">
+        <div class="container">
+          <div class="content has-text-centered">
+            <a class="icon-link" href="https://arxiv.org/pdf/2210.05714.pdf">
+              <i class="fas fa-file-pdf"></i>
+            </a>
+            <a class="icon-link" href="" class="external-link" disabled>
+              <i class="fab fa-github"></i>
+            </a>
+          </div>
+          <div class="columns is-centered">
+            <div class="column is-8">
+              <div class="content">
+                <p> Website borrowed from <a href="https://github.com/nerfies/nerfies.github.io">NeRFies</a> under a <a
+                    href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0
+                    International</a>
+                </p>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+
+</body>
+
+</html>
