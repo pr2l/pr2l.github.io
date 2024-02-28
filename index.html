@@ -119,7 +119,7 @@
                 </span> -->
                 <!-- Code Link. -->
                 <span class="link-block">
-                  <a href="static/notebooks/PR2LExample.ipynb"
+                  <a href="https://github.com/pr2l/pr2l.github.io/blob/master/static/notebooks/PR2LExample.ipynb"
                     class="external-link button is-normal is-rounded is-dark"> <!-- TODO -->
                     <span class="icon">
                       <i class="fab fa-github"></i>
@@ -369,40 +369,36 @@
                   </p>
                 </div>
 
+                <h3 class="title is-4">Code</h3>
+                <div class="content has-text-justified">
+                  <p>
+                    We provide a <a
+                      href="https://github.com/pr2l/pr2l.github.io/blob/master/static/notebooks/PR2LExample.ipynb">Jupyter
+                      Notebook containing an example instantiation of PR2L</a> for a toy contextual
+                    bandits image classification problem. To run this example, we recommend running the following
+                    commands:
+                  </p>
+                  <pre><code>
+conda create --name pr2l-env python=3.10
+conda activate pr2l-env
+conda install pytorch==2.2.0 torchvision==0.17.0 torchaudio==2.2.0 pytorch-cuda=11.8 -c pytorch -c nvidia
+pip install transformers
+pip install stable-baseline3[extra] 
+pip install gym ipykernel jupyter
+                  </code></pre>
+                  <p>
+                    We do not recommend running this on Colab, as the default memory provided (both for the data and for
+                    loading the VLM onto a GPU) may be insufficient. We suggest using the code in this notebook as a
+                    template for applying PR2L to other domains.
+                  </p>
+                </div>
+
 
 
 
               </div>
             </div>
-            <!--/ Animation. -->
 
-
-            <!-- Concurrent Work. -->
-            <!-- <div class="columns is-centered">
-      <div class="column is-full-width">
-        <h2 class="title is-3">Related Links</h2>
-
-        <div class="content has-text-justified">
-          <p>
-            There's a lot of excellent work that was introduced around the same time as ours.
-          </p>
-          <p>
-            <a href="https://arxiv.org/abs/2104.09125">Progressive Encoding for Neural Optimization</a> introduces an idea similar to our windowed position encoding for coarse-to-fine optimization.
-          </p>
-          <p>
-            <a href="https://www.albertpumarola.com/research/D-NeRF/index.html">D-NeRF</a> and <a href="https://gvv.mpi-inf.mpg.de/projects/nonrigid_nerf/">NR-NeRF</a>
-            both use deformation fields to model non-rigid scenes.
-          </p>
-          <p>
-            Some works model videos with a NeRF by directly modulating the density, such as <a href="https://video-nerf.github.io/">Video-NeRF</a>, <a href="https://www.cs.cornell.edu/~zl548/NSFF/">NSFF</a>, and <a href="https://neural-3d-video.github.io/">DyNeRF</a>
-          </p>
-          <p>
-            There are probably many more by the time you are reading this. Check out <a href="https://dellaert.github.io/NeRF/">Frank Dellart's survey on recent NeRF papers</a>, and <a href="https://github.com/yenchenlin/awesome-NeRF">Yen-Chen Lin's curated list of NeRF papers</a>.
-          </p>
-        </div>
-      </div>
-    </div> -->
-            <!--/ Concurrent Work. -->
 
           </div>
       </section>
