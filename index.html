@@ -203,32 +203,22 @@
               trained with reinforcement learning (RL) typically learn behaviors from scratch. We thus propose a novel
               approach that uses the vast amounts of general and indexable world knowledge encoded in vision-language
               models (VLMs) pre-trained on Internet-scale data for embodied RL. We initialize policies with VLMs by
-              using them as promptable representations: embeddings that are grounded in visual observations and encode
-              semantic features based on the VLM's internal knowledge, as elicited through prompts that provide task
-              context and auxiliary information. We evaluate our approach on visually-complex, long horizon RL tasks in
-              Minecraft and robot navigation in Habitat. We find that our policies trained on embeddings extracted from
-              general-purpose VLMs outperform equivalent policies trained on generic, non-promptable image embeddings.
-              We also find our approach outperforms instruction-following methods and performs comparably to
-              domain-specific embeddings.
+              using them as promptable representations: embeddings that encode semantic features of visual observations
+              based on the VLM's internal knowledge and reasoning capabilities, as elicited through prompts that provide
+              task context and auxiliary information. We evaluate our approach on visually-complex, long horizon RL
+              tasks in Minecraft and robot navigation in Habitat. We find that our policies trained on embeddings from
+              off-the-shelf, general-purpose VLMs outperform equivalent policies trained on generic, non-promptable
+              image embeddings. We also find our approach outperforms instruction-following methods and performs
+              comparably to domain-specific embeddings. Finally, we show that our approach can use chain-of-thought
+              prompting to produce representations of common-sense semantic reasoning, improving policy performance in
+              novel scenes by 1.5 times.
             </p>
           </div>
         </div>
       </div>
-      <!--/ Abstract. -->
-
-      <!-- Paper video.
-      <div class="columns is-centered has-text-centered">
-        <div class="column is-four-fifths">
-          <h2 class="title is-3">Video</h2>
-          <div class="publication-video">
-            <video autoplay controls muted loop playsinline width="100%">
-              <source src="static/images/VLMaps_v24_lt.mp4" type="video/mp4">
-            </video>
-          </div>
-        </div>
-      </div>
-    </div>  -->
   </section>
+
+
 
   <section class="section">
     <div class="container is-max-desktop">
@@ -236,9 +226,20 @@
         <div class="column is-full-width">
           <h2 class="title is-3">Approach</h2>
           <div class="content has-text-justified has-text-centered">
-            <img src="static/converted_imgs/Architecture/Architecture-1.png" />
+
+            <img src="static/converted_imgs/PromptableEmbedsExample2/PromptableEmbedsExample2-1.png" />
+            <p style="text-align: center;"><small>Example instantiations of PR2L for Minecraft and Habitat, showing how
+                the approach can use auxiliary text
+                and chain-of-thought prompting.</small></p>
+
 
             <h3 class="title is-4">Promptable Representations for Reinforcement Learning (PR2L)</h3>
+
+            <img src="static/converted_imgs/Architecture/Architecture-1.png" />
+            <p style="text-align: center;"><small>Architecture schematic for extracting VLM representations and using
+                them as the state representations of
+                a learned policy via PR2L.</small></p>
+
             <p>
               We initialize policies for embodied control and decision-making tasks with a generative vision-language
               model (VLM) like <a href="https://arxiv.org/abs/2305.06500">InstructBLIP</a>. For each visual observation
@@ -302,17 +303,41 @@
                     in more performant policies than (i) if generic, non-promptable representations are used and (ii) if
                     <a href="https://arxiv.org/abs/2307.15818">RT-2</a>-style instruction-following approaches are used.
                   </p>
-                  <img src="static/images/PR2LMinecraftResults.png" />
+                  <img src="static/images/MinecraftResults.png" />
                 </div>
 
-                <h3 class="title is-4">Offline Reinforcement Learning in Habitat ObjectNav</h3>
+                <h3 class="title is-4">Behavior Cloning and Offline Reinforcement Learning in Habitat ObjectNav</h3>
                 <div class="content has-text-justified">
                   <p>
-                    PR2L does not inherently improve exploration, instead producing state representations that are
-                    semantically meaningful and task-relevant. We thus expect it to shine in offline learning settings,
-                    wherein exploration is not a problem. We thus explore its usage in offline RL experiments for
-                    semantic object navigation tasks in the <a
-                      href="https://github.com/facebookresearch/habitat-sim">Habitat</a> simulator.
+                    PR2L also can use chain-of-thought prompting to further draw out relevant task-specific knowledge
+                    and shape its yielded representations. We explore this capability via semantic object navigation
+                    tasks in the <a href="https://github.com/facebookresearch/habitat-sim">Habitat</a> simulator.
+                    We train our policies on a tenth of the
+                    <a href="https://ram81.github.io/projects/habitat-web.html">Habitat-Web</a> ObjectNav human
+                    demonstration data
+                    with BC.
+                  </p>
+                  <p>We use the prompt "Would a [target object] be found here? Why or why not?" The latter sentence
+                    induces chain-of-thought (CoT) reasoning, drawing forth <span style="color: #2808c8">relevant common
+                      sense</span>, which the VLM semantically
+                    relates to <span style="color: #0a7c0e">other useful features</span>, beyond just <span
+                      style="color: #8e0b0b">the target object</span>.</p>
+                  <img src="static/images/CoTExamples.png" />
+
+                  <p>
+                    While both PR2L policies get higher success rates than all the baselines, using CoT prompting yields
+                    the best performance on unseen validation scenes, 1.5 times higher than that of PR2L without CoT.
+                    This indicates that PR2L
+                    successfully transfers the benefits of VLM common-sense textual reasoning for control,
+                    despite said VLM not reasoning about actions.
+                  </p>
+                  <img src="static/images/HabitatResults.png" />
+
+                  <p>
+                    We also conduct offline RL experiments in a simplified version of Habitat, which we use to
+                    investigate the sorts of representations yielded by PR2L (as seen in the next section). The prompt
+                    shapes the state representation to include the observed room's type, a useful abstraction for
+                    finding common household objects.
                   </p>
                   <div class="columns is-vcentered interpolation-panel">
                     <div class="column  has-text-centered">
@@ -331,12 +356,8 @@
                       </video>
                     </div>
                   </div>
-                  <p>
-                    The prompt shapes the state representation to include the observed room's type, a useful abstraction
-                    for finding common household objects. We find that PR2L significantly outperforms the non-promptable
-                    baseline.
-                  </p>
-                  <img src="static/images/HabitatResults.png" />
+
+
                 </div>
 
                 <h3 class="title is-4">Analysis of PR2L</h3>
